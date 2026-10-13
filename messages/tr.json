@@ -23,5 +23,13 @@
   },
   "Footer": {
     "email": "E-posta"
+  },
+  "Hero": {
+    "title": "Fikirden ürüne.\nHer katmanda.",
+    "subtitle": "Ben Tuğberk. Mobil, web, backend ve oyun geliştiriyorum; bir fikri alıp uçtan uca, gerçekten kullanılan bir ürüne dönüştürüyorum.",
+    "terminal": "mobile · web · backend · games",
+    "openToWork": "Yeni projelere açığım",
+    "ctaProjects": "Projeleri gör",
+    "ctaContact": "İletişime geç"
   }
 }

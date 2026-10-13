@@ -93,3 +93,36 @@
     transform: scale(0.86) translateY(3rem);
   }
 }
+
+/* Terminal typing line (TypedLine). */
+.typed {
+  display: inline-block;
+  vertical-align: bottom;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .typed {
+    animation: typing var(--typed-duration) steps(var(--typed-chars)) 400ms both;
+  }
+
+  .typed-caret {
+    animation: caret 1.1s step-end infinite;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: calc(var(--typed-chars) * 1ch);
+  }
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
