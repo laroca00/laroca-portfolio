@@ -47,5 +47,21 @@
   "Terminal": {
     "title": "son çalışmalar",
     "command": "git log --oneline"
+  },
+  "Services": {
+    "title": "Birlikte neler yapabiliriz?",
+    "intro": "LaRoca Dev olarak fikir aşamasından yayına kadar her adımda yanınızdayım."
+  },
+  "Testimonials": {
+    "title": "Birlikte çalıştıklarım ne diyor?"
+  },
+  "LatestPosts": {
+    "title": "Yazılar",
+    "all": "Tüm yazılar",
+    "readingTime": "{minutes} dk okuma"
+  },
+  "Contact": {
+    "title": "Birlikte bir şey üretelim.",
+    "intro": "Bir proje fikrin, iş teklifin ya da sadece bir sorun mu var? Yaz, genellikle bir gün içinde dönüyorum."
   }
 }
