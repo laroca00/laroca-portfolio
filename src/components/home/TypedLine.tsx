@@ -15,7 +15,8 @@ export function TypedLine({ text, prompt = "$", speedMs = 45, className = "" }: 
   } as CSSProperties;
 
   return (
-    <p data-testid="typed-line" aria-label={`${prompt} ${text}`} className={`font-mono ${className}`}>
+    <p data-testid="typed-line" className={`font-mono ${className}`}>
+      <span className="sr-only">{`${prompt} ${text}`}</span>
       <span aria-hidden="true" className="text-muted">
         {prompt}{" "}
       </span>

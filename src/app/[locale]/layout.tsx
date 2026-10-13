@@ -1,9 +1,10 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
-import { CommandPalette } from "@/components/command/CommandPalette";
+import { CommandPaletteLauncher } from "@/components/command/CommandPaletteLauncher";
 import { Footer } from "@/components/layout/Footer";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Nav } from "@/components/layout/Nav";
@@ -14,7 +15,6 @@ import { siteUrl } from "@/lib/site";
 import "../globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin", "latin-ext"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin", "latin-ext"] });
 
 export function generateStaticParams() {
   return enabledLocales().map((locale) => ({ locale }));
@@ -46,7 +46,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   ]);
 
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang={locale} className={`${geistSans.variable} antialiased`}>
       <body className="flex min-h-svh flex-col">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <a
@@ -64,12 +64,13 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd(profile)).replace(/</g, "\u003c") }}
           />
-          <CommandPalette
+          <CommandPaletteLauncher
             projects={projects.map(({ slug, title }) => ({ slug, title }))}
             email={profile.email}
             locales={enabledLocales()}
           />
         </NextIntlClientProvider>
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );

@@ -22,7 +22,7 @@ export function TerminalCard({ lines, className = "" }: { lines: TerminalLine[];
         <ol className="mt-2 space-y-1">
           {lines.map((l, i) => (
             <li key={`${l.date}-${i}`} className="flex gap-3">
-              <time dateTime={l.date} className="shrink-0 text-muted/70">
+              <time dateTime={l.date} className="shrink-0 text-muted">
                 {l.date}
               </time>
               <span className="min-w-0 break-words text-terminal">{l.message}</span>

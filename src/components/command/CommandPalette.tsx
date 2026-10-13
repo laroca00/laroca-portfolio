@@ -9,7 +9,12 @@ import { getPathname, usePathname, useRouter } from "@/i18n/routing";
 import { OPEN_COMMAND_PALETTE } from "@/lib/site";
 import { GITHUB_URL } from "@/lib/links";
 
-type Props = { projects: { slug: string; title: string }[]; email: string; locales: Locale[] };
+type Props = {
+  projects: { slug: string; title: string }[];
+  email: string;
+  locales: Locale[];
+  defaultOpen?: boolean;
+};
 
 const PAGES = [
   { key: "home", href: "/" },
@@ -24,14 +29,14 @@ const itemClass =
 const groupClass =
   "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:pb-1 [&_[cmdk-group-heading]]:pt-3 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:text-muted/70";
 
-export function CommandPalette({ projects, email, locales }: Props) {
+export function CommandPalette({ projects, email, locales, defaultOpen = false }: Props) {
   const t = useTranslations("Command");
   const tNav = useTranslations("Nav");
   const locale = useLocale();
   const router = useRouter();
   const nextRouter = useNextRouter();
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {

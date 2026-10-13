@@ -8,7 +8,8 @@ test("full text is in the markup from the first render (no-JS / reduced motion s
   render(<TypedLine text={TEXT} />);
   const line = screen.getByTestId("typed-line");
   expect(line).toHaveTextContent(TEXT);
-  expect(line).toHaveAttribute("aria-label", `$ ${TEXT}`);
+  expect(line).not.toHaveAttribute("aria-label");
+  expect(screen.getByText(`$ ${TEXT}`)).toHaveClass("sr-only");
 });
 
 test("typing animation is sized to the text and its speed", () => {
@@ -17,5 +18,5 @@ test("typing animation is sized to the text and its speed", () => {
   const chars = Array.from(TEXT).length;
   expect(typed.style.getPropertyValue("--typed-chars")).toBe(String(chars));
   expect(typed.style.getPropertyValue("--typed-duration")).toBe(`${chars * 50}ms`);
-  expect(screen.getByTestId("typed-line")).toHaveAttribute("aria-label", `~/laroca $ ${TEXT}`);
+  expect(screen.getByText(`~/laroca $ ${TEXT}`)).toHaveClass("sr-only");
 });

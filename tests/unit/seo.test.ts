@@ -39,11 +39,7 @@ test("sitemap only lists enabled locales and the locales an entry exists in", ()
     TR_EN,
   );
   const urls = sitemap.map((e) => e.url);
-  expect(urls).toEqual([
-    `${SITE}/tr/projects/empower-eu`,
-    `${SITE}/en/projects/empower-eu`,
-    `${SITE}/tr/blog/only-tr`,
-  ]);
+  expect(urls).toEqual([`${SITE}/tr/projects/empower-eu`, `${SITE}/en/projects/empower-eu`, `${SITE}/tr/blog/only-tr`]);
   expect(urls.some((u) => u.includes("/de/"))).toBe(false);
   expect(sitemap[0].alternates?.languages).toEqual({
     tr: `${SITE}/tr/projects/empower-eu`,
