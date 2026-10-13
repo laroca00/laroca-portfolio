@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { Footer } from "@/components/layout/Footer";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Nav } from "@/components/layout/Nav";
 import { getProfile, getProjects } from "@/content/load";
 import { enabledLocales, isEnabledLocale } from "@/i18n/config";
@@ -45,7 +46,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           >
             {t("skip")}
           </a>
-          <Nav />
+          <Nav languageSwitcher={<LanguageSwitcher locales={enabledLocales()} current={locale} />} />
           <main id="main" tabIndex={-1} className="flex flex-1 flex-col outline-none">
             {children}
           </main>
