@@ -1,0 +1,11 @@
+{
+  "Metadata": {
+    "title": "Tuğberk Emre Akkurt · LaRoca",
+    "description": "Mobil, web, backend ve oyun geliştiren genç ve idealist bir yazılımcı."
+  },
+  "NotFound": {
+    "title": "Sayfa bulunamadı",
+    "description": "Aradığın sayfa taşınmış ya da hiç var olmamış olabilir.",
+    "back": "Ana sayfaya dön"
+  }
+}
