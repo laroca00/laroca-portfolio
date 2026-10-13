@@ -31,5 +31,11 @@
     "openToWork": "Yeni projelere açığım",
     "ctaProjects": "Projeleri gör",
     "ctaContact": "İletişime geç"
+  },
+  "Showcase": {
+    "readCase": "Vaka çalışmasını oku",
+    "visit": "Siteye git",
+    "store": "Play Store'da gör",
+    "coverAlt": "{title} projesinin ekran görüntüsü"
   }
 }
