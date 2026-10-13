@@ -62,7 +62,22 @@
   },
   "Contact": {
     "title": "Birlikte bir şey üretelim.",
-    "intro": "Bir proje fikrin, iş teklifin ya da sadece bir sorun mu var? Yaz, genellikle bir gün içinde dönüyorum."
+    "intro": "Bir proje fikrin, iş teklifin ya da sadece bir sorun mu var? Yaz, genellikle bir gün içinde dönüyorum.",
+    "fields": {
+      "name": "Adın",
+      "email": "E-posta adresin",
+      "message": "Mesajın"
+    },
+    "errors": {
+      "name": "Lütfen adını yaz (en az 2 karakter).",
+      "email": "Geçerli bir e-posta adresi yaz.",
+      "message": "Mesajın en az 10 karakter olmalı."
+    },
+    "submit": "Mesajı gönder",
+    "sending": "Gönderiliyor…",
+    "success": "Mesajın ulaştı. En kısa sürede sana dönüş yapacağım.",
+    "rateLimited": "Kısa sürede çok fazla mesaj gönderildi. Birkaç dakika sonra tekrar dene.",
+    "error": "Mesaj gönderilemedi. Bana doğrudan e-posta atabilirsin:"
   },
   "Projects": {
     "title": "Projeler",

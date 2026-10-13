@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ContactForm } from "@/components/contact/ContactForm";
 import { Bento } from "@/components/home/Bento";
 import { Hero } from "@/components/home/Hero";
 import { LatestPosts } from "@/components/home/LatestPosts";
@@ -40,6 +41,9 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
             {t("title")}
           </h2>
           <p className="mt-6 max-w-[34rem] text-lg text-muted">{t("intro")}</p>
+          <div className="mt-14 w-full max-w-[46rem]">
+            <ContactForm email={profile.email} />
+          </div>
         </Container>
       </section>
     </>
