@@ -7,5 +7,21 @@
     "title": "Sayfa bulunamadı",
     "description": "Aradığın sayfa taşınmış ya da hiç var olmamış olabilir.",
     "back": "Ana sayfaya dön"
+  },
+  "A11y": {
+    "skip": "İçeriğe geç"
+  },
+  "Nav": {
+    "label": "Ana menü",
+    "projects": "Projeler",
+    "about": "Hakkımda",
+    "services": "Hizmetler",
+    "blog": "Blog",
+    "contact": "İletişim",
+    "palette": "Komut paletini aç",
+    "menu": "Menü"
+  },
+  "Footer": {
+    "email": "E-posta"
   }
 }

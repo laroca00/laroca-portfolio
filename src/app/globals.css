@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg: #000000;
+  --color-surface: #161618;
+  --color-surface-2: #232326;
+  --color-border: rgb(255 255 255 / 0.09);
+  --color-text: #f5f5f7;
+  --color-muted: #a1a1a6;
+  --color-terminal: #7cff9b;
+  --color-link: #2997ff;
+
+  --color-accent-green: #30d158;
+  --color-accent-teal: #40c8e0;
+  --color-accent-blue: #0a84ff;
+  --color-accent-violet: #bf5af2;
+  --color-accent-red: #ff453a;
+  --color-accent-amber: #ffb340;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "Cascadia Code", monospace;
+
+  --text-display: clamp(2.75rem, 8vw, 6rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.035em;
+  --text-headline: clamp(2rem, 5vw, 3.5rem);
+  --text-headline--line-height: 1.06;
+  --text-headline--letter-spacing: -0.03em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-link);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: rgb(41 151 255 / 0.35);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility text-gradient {
+  background: linear-gradient(180deg, #ffffff 30%, #8e8e93 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/*
+ * Scroll-driven reveal. Pure CSS: content is fully visible without JS, in
+ * browsers without view timelines, and whenever reduced motion is requested.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+
+    .reveal-scale {
+      animation: reveal-scale linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0.35;
+    transform: scale(0.86) translateY(3rem);
+  }
 }
