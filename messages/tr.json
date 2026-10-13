@@ -37,5 +37,15 @@
     "visit": "Siteye git",
     "store": "Play Store'da gör",
     "coverAlt": "{title} projesinin ekran görüntüsü"
+  },
+  "Bento": {
+    "title": "Kısaca ben.",
+    "openToWork": "Yeni projelere açığım",
+    "more": "Hakkımda daha fazlası",
+    "stack": "Her gün kullandığım araçlar"
+  },
+  "Terminal": {
+    "title": "son çalışmalar",
+    "command": "git log --oneline"
   }
 }
