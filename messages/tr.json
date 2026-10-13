@@ -108,5 +108,18 @@
     "work": "İş",
     "education": "Eğitim",
     "stack": "Araçlar ve teknolojiler"
+  },
+  "Command": {
+    "label": "Komut paleti",
+    "placeholder": "Bir sayfa, proje ya da komut ara…",
+    "empty": "Sonuç bulunamadı.",
+    "go": "Git",
+    "home": "Ana sayfa",
+    "actions": "Eylemler",
+    "copyEmail": "E-postayı kopyala",
+    "copied": "Kopyalandı",
+    "downloadCv": "CV indir",
+    "github": "GitHub profilini aç",
+    "language": "Dil"
   }
 }

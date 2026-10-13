@@ -3,9 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { CommandPalette } from "@/components/command/CommandPalette";
 import { Footer } from "@/components/layout/Footer";
 import { Nav } from "@/components/layout/Nav";
-import { getProfile } from "@/content/load";
+import { getProfile, getProjects } from "@/content/load";
 import { enabledLocales, isEnabledLocale } from "@/i18n/config";
 import "../globals.css";
 
@@ -27,9 +28,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const { locale } = await params;
   if (!isEnabledLocale(locale)) notFound();
   setRequestLocale(locale);
-  const [messages, profile, t] = await Promise.all([
+  const [messages, profile, projects, t] = await Promise.all([
     getMessages({ locale }),
     getProfile(locale),
+    getProjects(locale),
     getTranslations({ locale, namespace: "A11y" }),
   ]);
 
@@ -48,6 +50,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
             {children}
           </main>
           <Footer profile={profile} />
+          <CommandPalette
+            projects={projects.map(({ slug, title }) => ({ slug, title }))}
+            email={profile.email}
+            locales={enabledLocales()}
+          />
         </NextIntlClientProvider>
       </body>
     </html>
