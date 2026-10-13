@@ -1,0 +1,24 @@
+[
+  {
+    "start": "2024-01",
+    "title": "Kurucu ve full-stack geliştirici",
+    "org": "LaRoca Dev",
+    "description": "Erasmus+ projeleri, kurumsal web siteleri ve mobil uygulamalar için uçtan uca geliştirme. (Örnek metin — güncellenecek.)",
+    "kind": "work"
+  },
+  {
+    "start": "2023-06",
+    "end": "2023-12",
+    "title": "Mobil uygulama geliştirici",
+    "org": "Bağımsız proje (örnek)",
+    "description": "React Native ile çok oyunculu kart oyunu ve dil öğrenme uygulaması. (Örnek metin — güncellenecek.)",
+    "kind": "work"
+  },
+  {
+    "start": "2021-09",
+    "title": "Bilgisayar Mühendisliği (örnek)",
+    "org": "Üniversite adı (örnek)",
+    "description": "Eğitim bilgisi buraya gelecek. (Örnek metin — güncellenecek.)",
+    "kind": "education"
+  }
+]

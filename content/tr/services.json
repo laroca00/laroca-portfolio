@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Web siteleri ve web uygulamaları",
+    "description": "Kurumsal siteden karmaşık web uygulamasına kadar hızlı, erişilebilir ve arama motoru dostu arayüzler.",
+    "icon": "globe"
+  },
+  {
+    "title": "Mobil uygulamalar",
+    "description": "React Native ile iOS ve Android için tek kod tabanından, mağazaya hazır uygulamalar.",
+    "icon": "smartphone"
+  },
+  {
+    "title": "Proje ve kurum siteleri",
+    "description": "Erasmus+ ve AB fonlu projeler için çok dilli, KVKK/GDPR uyumlu, etki ölçümlü proje siteleri.",
+    "icon": "landmark"
+  },
+  {
+    "title": "Backend ve API",
+    "description": "Gerçek zamanlı oyun sunucularından içerik yönetimine kadar güvenilir ve ölçeklenebilir altyapılar.",
+    "icon": "server"
+  }
+]

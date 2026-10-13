@@ -1,0 +1,27 @@
+---
+title: React Native ve Next.js ile tek ekosistemde ürün geliştirmek
+description: Mobil ve web projelerinde aynı dili, aynı araçları ve aynı düşünme biçimini kullanmanın bana kazandırdıkları.
+date: 2026-09-28
+tags: [react-native, nextjs, typescript]
+draft: false
+---
+
+{/* TODO: Tuğberk — bu örnek yazıyı kendi yazınla değiştir. */}
+
+Örnek yazı. Hem mobil hem web tarafında React kullanmak, bir projeden diğerine geçerken zihinsel bağlam değiştirme maliyetini neredeyse sıfıra indiriyor.
+
+## Paylaşılan tipler
+
+Aynı TypeScript tiplerini istemci ve sunucu arasında paylaşmak, hataların derleme anında yakalanmasını sağlıyor:
+
+```ts
+export type Card = { suit: "maça" | "kupa" | "karo" | "sinek"; rank: number };
+
+export function isPisti(table: Card[], played: Card): boolean {
+  return table.length === 1 && table[0].rank === played.rank;
+}
+```
+
+## Sonuç
+
+Tek ekosistem, daha az sürtünme ve daha hızlı teslim demek.

@@ -1,0 +1,17 @@
+{
+  "name": "Tuğberk Emre Akkurt",
+  "handle": "LaRoca",
+  "tagline": "Fikirden ürüne, her katmanda.",
+  "bio": "Mobil, web, backend ve oyun geliştiren genç bir yazılımcıyım. İnsanlara ve gezegene gerçekten fayda sağlayan ürünler üretmeyi seviyorum; Erasmus+ projelerinden çok oyunculu kart oyunlarına kadar fikri alıp uçtan uca hayata geçiriyorum.",
+  "email": "tugberkakkrt@gmail.com",
+  "location": "Türkiye",
+  "openToWork": true,
+  "socials": [{ "label": "GitHub", "url": "https://github.com/laroca00" }],
+  "stats": [
+    { "value": "2", "label": "Erasmus+ projesi" },
+    { "value": "7", "label": "partner ülke" },
+    { "value": "2", "label": "mobil uygulama" },
+    { "value": "6", "label": "yayınlanan proje" }
+  ],
+  "stack": ["TypeScript", "React", "Next.js", "React Native", "Node.js", "PHP", "WordPress", "Tailwind CSS", "PostgreSQL"]
+}
