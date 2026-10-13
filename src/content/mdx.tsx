@@ -1,5 +1,6 @@
 import "server-only";
 import type { ComponentPropsWithoutRef, ReactElement } from "react";
+import { cacheLife } from "next/cache";
 import { compileMDX } from "next-mdx-remote/rsc";
 import rehypePrettyCode from "rehype-pretty-code";
 
@@ -18,7 +19,10 @@ function MdxImage({ alt = "", ...props }: ComponentPropsWithoutRef<"img">) {
   return <img alt={alt} loading="lazy" decoding="async" {...props} />;
 }
 
+/** Cached: MDX compilation reads the clock, which prerendering forbids outside a cache scope. */
 export async function renderMdx(source: string): Promise<ReactElement> {
+  "use cache";
+  cacheLife("max");
   const { content } = await compileMDX({
     source,
     components: { a: MdxLink, img: MdxImage },

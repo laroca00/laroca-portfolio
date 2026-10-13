@@ -14,9 +14,34 @@ vi.mock("next/navigation", async (importOriginal) => ({
 
 const base = { category: "web" as const, stack: [], year: 2025, body: "", label: "Etiket", tagline: "Kısa" };
 const projects: Project[] = [
-  { ...base, slug: "green-future-balcony", title: "Green Future Balcony", accent: "green", featured: true, order: 1, liveUrl: "https://greenfuturebalcony.com", cover: "/projects/green-future-balcony/cover.webp" },
-  { ...base, slug: "empower-eu", title: "EmpowerEU", accent: "violet", featured: true, order: 2, liveUrl: "https://empoweringadultswithdisabilities.com" },
-  { ...base, slug: "online-pisti", title: "Online Pişti", accent: "red", featured: true, order: 3, storeUrl: "https://play.google.com/store/apps/details?id=x" },
+  {
+    ...base,
+    slug: "green-future-balcony",
+    title: "Green Future Balcony",
+    accent: "green",
+    featured: true,
+    order: 1,
+    liveUrl: "https://greenfuturebalcony.com",
+    cover: "/projects/green-future-balcony/cover.webp",
+  },
+  {
+    ...base,
+    slug: "empower-eu",
+    title: "EmpowerEU",
+    accent: "violet",
+    featured: true,
+    order: 2,
+    liveUrl: "https://empoweringadultswithdisabilities.com",
+  },
+  {
+    ...base,
+    slug: "online-pisti",
+    title: "Online Pişti",
+    accent: "red",
+    featured: true,
+    order: 3,
+    storeUrl: "https://play.google.com/store/apps/details?id=x",
+  },
   { ...base, slug: "sirpca-ogren", title: "Sırpça Öğren", accent: "blue", featured: true, order: 4 },
   { ...base, slug: "akgun", title: "Akgün", accent: "amber", featured: false, order: 5 },
 ];

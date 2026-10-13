@@ -1,0 +1,40 @@
+{
+  "tr": {
+    "projects": [
+      {
+        "slug": "green-future-balcony",
+        "draft": false
+      },
+      {
+        "slug": "empower-eu",
+        "draft": false
+      },
+      {
+        "slug": "online-pisti",
+        "draft": false
+      },
+      {
+        "slug": "sirpca-ogren",
+        "draft": false
+      },
+      {
+        "slug": "akgun",
+        "draft": false
+      },
+      {
+        "slug": "3dcare",
+        "draft": false
+      }
+    ],
+    "blog": [
+      {
+        "slug": "react-native-ve-next-js",
+        "draft": false
+      },
+      {
+        "slug": "erisilebilir-proje-siteleri",
+        "draft": false
+      }
+    ]
+  }
+}

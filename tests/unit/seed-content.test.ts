@@ -20,9 +20,7 @@ test("seed content is valid and complete", async () => {
     "sirpca-ogren",
   ]);
   expect(projects.find((p) => p.slug === "green-future-balcony")?.liveUrl).toBe("https://greenfuturebalcony.com");
-  expect(projects.find((p) => p.slug === "empower-eu")?.liveUrl).toBe(
-    "https://empoweringadultswithdisabilities.com",
-  );
+  expect(projects.find((p) => p.slug === "empower-eu")?.liveUrl).toBe("https://empoweringadultswithdisabilities.com");
   const profile = await getProfile("tr");
   expect(profile.email).toBe("tugberkakkrt@gmail.com");
   expect(profile.name).toBe("Tuğberk Emre Akkurt");

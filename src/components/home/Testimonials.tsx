@@ -15,7 +15,8 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
         <ul
           tabIndex={0}
           aria-labelledby="testimonials-title"
-          className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0">
+          className="-mx-4 mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0"
+        >
           {items.map((item, i) => (
             <li key={i} className="w-[85%] shrink-0 snap-center md:w-auto">
               <figure className="flex h-full flex-col rounded-[28px] bg-surface p-8">

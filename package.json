@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check:content": "tsx scripts/check-content.ts",
-    "prebuild": "npm run check:content"
+    "prebuild": "npm run check:content",
+    "predev": "npm run check:content",
+    "format": "prettier --write src tests scripts messages content/**/*.json"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -43,6 +45,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
     "jsdom": "^30.1.2",
+    "prettier": "^3.9.10",
     "tailwindcss": "^4",
     "tsx": "^4.23.15",
     "typescript": "^5",

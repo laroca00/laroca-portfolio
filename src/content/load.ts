@@ -32,7 +32,6 @@ export async function getPost(locale: Locale, slug: string, root = DEFAULT_CONTE
 
 export const getProfile = async (locale: Locale, root = DEFAULT_CONTENT_ROOT) => readProfile(locale, root);
 export const getServices = async (locale: Locale, root = DEFAULT_CONTENT_ROOT) => readServices(locale, root);
-export const getTestimonials = async (locale: Locale, root = DEFAULT_CONTENT_ROOT) =>
-  readTestimonials(locale, root);
+export const getTestimonials = async (locale: Locale, root = DEFAULT_CONTENT_ROOT) => readTestimonials(locale, root);
 export const getExperience = async (locale: Locale, root = DEFAULT_CONTENT_ROOT) => readExperience(locale, root);
 export const getChangelog = async (locale: Locale, root = DEFAULT_CONTENT_ROOT) => readChangelog(locale, root);

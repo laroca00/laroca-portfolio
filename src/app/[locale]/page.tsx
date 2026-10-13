@@ -7,14 +7,7 @@ import { ProjectShowcase } from "@/components/home/ProjectShowcase";
 import { ServicesSection } from "@/components/home/ServicesSection";
 import { Testimonials } from "@/components/home/Testimonials";
 import { Container } from "@/components/layout/Container";
-import {
-  getChangelog,
-  getPosts,
-  getProfile,
-  getProjects,
-  getServices,
-  getTestimonials,
-} from "@/content/load";
+import { getChangelog, getPosts, getProfile, getProjects, getServices, getTestimonials } from "@/content/load";
 import { isEnabledLocale } from "@/i18n/config";
 import { getTerminalFeed } from "@/lib/terminal-feed";
 

@@ -1,3 +1,12 @@
-{ "name": "Test Kişi", "handle": "LaRoca", "tagline": "t", "bio": "b", "email": "a@b.co", "location": "Ankara",
-  "openToWork": true, "socials": [{ "label": "GitHub", "url": "https://github.com/laroca00" }],
-  "stats": [{ "value": "2", "label": "proje" }], "stack": ["React"] }
+{
+  "name": "Test Kişi",
+  "handle": "LaRoca",
+  "tagline": "t",
+  "bio": "b",
+  "email": "a@b.co",
+  "location": "Ankara",
+  "openToWork": true,
+  "socials": [{ "label": "GitHub", "url": "https://github.com/laroca00" }],
+  "stats": [{ "value": "2", "label": "proje" }],
+  "stack": ["React"]
+}

@@ -63,5 +63,35 @@
   "Contact": {
     "title": "Birlikte bir şey üretelim.",
     "intro": "Bir proje fikrin, iş teklifin ya da sadece bir sorun mu var? Yaz, genellikle bir gün içinde dönüyorum."
+  },
+  "Projects": {
+    "title": "Projeler",
+    "intro": "Uluslararası proje sitelerinden mobil oyunlara kadar üzerinde çalıştığım işler."
+  },
+  "Project": {
+    "stack": "Kullanılan teknolojiler",
+    "visit": "Siteye git",
+    "store": "Play Store'da gör",
+    "repo": "Kaynak kodu",
+    "coverAlt": "{title} projesinin ekran görüntüsü",
+    "pagination": "Diğer projeler",
+    "previous": "Önceki proje",
+    "next": "Sonraki proje"
+  },
+  "Blog": {
+    "title": "Yazılar",
+    "intro": "Geliştirirken öğrendiklerim, denediklerim ve düşündüklerim.",
+    "empty": "Henüz yazı yok.",
+    "back": "Tüm yazılar",
+    "tags": "Etiketler"
+  },
+  "About": {
+    "title": "Hakkımda",
+    "cv": "CV indir (PDF)",
+    "timeline": "Deneyim ve eğitim",
+    "present": "Bugün",
+    "work": "İş",
+    "education": "Eğitim",
+    "stack": "Araçlar ve teknolojiler"
   }
 }

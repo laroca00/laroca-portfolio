@@ -32,8 +32,7 @@ function isPublicPush(e: unknown): e is PushEvent {
  * no events) falls back to the hand-written changelog. Never throws.
  */
 export async function getTerminalLines({ username, fallback, limit = 5, fetchImpl = fetch }: Options) {
-  const fromChangelog = (): TerminalLine[] =>
-    fallback.slice(0, limit).map((f) => ({ ...f, source: "changelog" }));
+  const fromChangelog = (): TerminalLine[] => fallback.slice(0, limit).map((f) => ({ ...f, source: "changelog" }));
 
   try {
     const res = await fetchImpl(`https://api.github.com/users/${username}/events/public?per_page=30`, {

@@ -13,5 +13,15 @@
     { "value": "2", "label": "mobil uygulama" },
     { "value": "6", "label": "yayınlanan proje" }
   ],
-  "stack": ["TypeScript", "React", "Next.js", "React Native", "Node.js", "PHP", "WordPress", "Tailwind CSS", "PostgreSQL"]
+  "stack": [
+    "TypeScript",
+    "React",
+    "Next.js",
+    "React Native",
+    "Node.js",
+    "PHP",
+    "WordPress",
+    "Tailwind CSS",
+    "PostgreSQL"
+  ]
 }

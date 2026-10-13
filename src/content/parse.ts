@@ -57,8 +57,11 @@ export function readProjects(locale: Locale, root = DEFAULT_CONTENT_ROOT): Proje
     .sort((a, b) => a.order - b.order);
 }
 
-export function readPosts(locale: Locale, root = DEFAULT_CONTENT_ROOT): Post[] {
-  const includeDrafts = process.env.NODE_ENV !== "production";
+export function readPosts(
+  locale: Locale,
+  root = DEFAULT_CONTENT_ROOT,
+  includeDrafts = process.env.NODE_ENV !== "production",
+): Post[] {
   return mdxFiles(path.join(root, locale, "blog"))
     .map((file) => {
       const { data, content } = matter(fs.readFileSync(file, "utf8"));

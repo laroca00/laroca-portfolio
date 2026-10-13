@@ -31,9 +31,6 @@ export function resolveFallbackLocale(flags: Record<Locale, boolean> = LOCALE_EN
   return first;
 }
 
-export function isEnabledLocale(
-  value: string,
-  flags: Record<Locale, boolean> = LOCALE_ENABLED,
-): value is Locale {
+export function isEnabledLocale(value: string, flags: Record<Locale, boolean> = LOCALE_ENABLED): value is Locale {
   return (LOCALES as readonly string[]).includes(value) && flags[value as Locale];
 }

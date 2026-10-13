@@ -10,7 +10,13 @@ const json = (body: unknown, status = 200) =>
   vi.fn(async () => new Response(typeof body === "string" ? body : JSON.stringify(body), { status }));
 
 function pushEvent(repo: string, message: string, createdAt = "2026-10-01T10:00:00Z", isPublic = true) {
-  return { type: "PushEvent", public: isPublic, repo: { name: repo }, created_at: createdAt, payload: { commits: [{ message }] } };
+  return {
+    type: "PushEvent",
+    public: isPublic,
+    repo: { name: repo },
+    created_at: createdAt,
+    payload: { commits: [{ message }] },
+  };
 }
 
 test("maps public PushEvents to lines with the repo short name and first message line", async () => {

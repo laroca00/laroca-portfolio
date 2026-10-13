@@ -1,0 +1,7 @@
+node_modules
+.next
+.claude
+.superpowers
+docs
+src/generated
+package-lock.json

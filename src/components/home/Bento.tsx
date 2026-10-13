@@ -34,7 +34,10 @@ export function Bento({ profile, terminalLines }: { profile: Profile; terminalLi
           <TerminalCard lines={terminalLines} className="md:col-span-2 md:min-h-[22rem]" />
 
           {profile.stats.map((s) => (
-            <article key={s.label} className="flex min-h-[10rem] flex-col justify-end rounded-[20px] border border-border bg-surface p-6">
+            <article
+              key={s.label}
+              className="flex min-h-[10rem] flex-col justify-end rounded-[20px] border border-border bg-surface p-6"
+            >
               <p className="text-5xl font-semibold tracking-tight">{s.value}</p>
               <p className="mt-1 text-muted">{s.label}</p>
             </article>

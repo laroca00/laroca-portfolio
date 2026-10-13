@@ -34,7 +34,14 @@ const post = (slug: string, day: number): Post => ({
 });
 
 test("services render every item", () => {
-  wrap(<ServicesSection services={[{ title: "Mobil", description: "RN", icon: "smartphone" }, { title: "Web", description: "Next", icon: "globe" }]} />);
+  wrap(
+    <ServicesSection
+      services={[
+        { title: "Mobil", description: "RN", icon: "smartphone" },
+        { title: "Web", description: "Next", icon: "globe" },
+      ]}
+    />,
+  );
   expect(screen.getByRole("heading", { name: "Mobil" })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: "Web" })).toBeInTheDocument();
 });

@@ -2,7 +2,10 @@ import { expect, test } from "@playwright/test";
 
 test.describe("locale routing", () => {
   test("German browser falls back to /tr while de is disabled", async ({ browser }) => {
-    const ctx = await browser.newContext({ locale: "de-DE", extraHTTPHeaders: { "Accept-Language": "de-DE,de;q=0.9" } });
+    const ctx = await browser.newContext({
+      locale: "de-DE",
+      extraHTTPHeaders: { "Accept-Language": "de-DE,de;q=0.9" },
+    });
     const page = await ctx.newPage();
     const res = await page.goto("/");
     expect(res?.status()).toBe(200);
