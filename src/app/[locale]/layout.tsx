@@ -9,6 +9,8 @@ import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Nav } from "@/components/layout/Nav";
 import { getProfile, getProjects } from "@/content/load";
 import { enabledLocales, isEnabledLocale } from "@/i18n/config";
+import { personJsonLd, alternatesFor } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
 import "../globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin", "latin-ext"] });
@@ -22,7 +24,14 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
   const { locale } = await params;
   if (!isEnabledLocale(locale)) return {};
   const t = await getTranslations({ locale, namespace: "Metadata" });
-  return { title: t("title"), description: t("description") };
+  return {
+    metadataBase: new URL(siteUrl()),
+    title: { default: t("title"), template: "%s · LaRoca" },
+    description: t("description"),
+    alternates: alternatesFor(locale, ""),
+    openGraph: { type: "website", siteName: "LaRoca", locale },
+    twitter: { card: "summary_large_image" },
+  };
 }
 
 export default async function LocaleLayout({ children, params }: LayoutProps<"/[locale]">) {
@@ -51,6 +60,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
             {children}
           </main>
           <Footer profile={profile} />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd(profile)).replace(/</g, "\u003c") }}
+          />
           <CommandPalette
             projects={projects.map(({ slug, title }) => ({ slug, title }))}
             email={profile.email}

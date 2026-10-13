@@ -7,6 +7,7 @@ import { renderMdx } from "@/content/mdx";
 import { isEnabledLocale } from "@/i18n/config";
 import { Link } from "@/i18n/routing";
 import { formatDate } from "@/lib/format";
+import { absoluteUrl } from "@/lib/site";
 
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
   if (!isEnabledLocale(params.locale)) return [];
@@ -21,6 +22,8 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/blog/[sl
     ? {
         title: post.title,
         description: post.description,
+        // Posts may exist in only some languages, so no cross-locale hreflang here.
+        alternates: { canonical: absoluteUrl(`/${locale}/blog/${slug}`) },
         openGraph: { type: "article", publishedTime: post.date.toISOString() },
       }
     : {};

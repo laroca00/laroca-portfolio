@@ -5,12 +5,13 @@ import { ServicesSection } from "@/components/home/ServicesSection";
 import { Testimonials } from "@/components/home/Testimonials";
 import { getServices, getTestimonials } from "@/content/load";
 import { isEnabledLocale } from "@/i18n/config";
+import { alternatesFor } from "@/lib/seo";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/services">): Promise<Metadata> {
   const { locale } = await params;
   if (!isEnabledLocale(locale)) return {};
   const t = await getTranslations({ locale, namespace: "Services" });
-  return { title: t("title"), description: t("intro") };
+  return { title: t("title"), description: t("intro"), alternates: alternatesFor(locale, "/services") };
 }
 
 export default async function ServicesPage({ params }: PageProps<"/[locale]/services">) {

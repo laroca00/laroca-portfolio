@@ -6,12 +6,13 @@ import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { getExperience, getProfile } from "@/content/load";
 import { isEnabledLocale } from "@/i18n/config";
+import { alternatesFor } from "@/lib/seo";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/about">): Promise<Metadata> {
   const { locale } = await params;
   if (!isEnabledLocale(locale)) return {};
   const t = await getTranslations({ locale, namespace: "About" });
-  return { title: t("title") };
+  return { title: t("title"), alternates: alternatesFor(locale, "/about") };
 }
 
 export default async function AboutPage({ params }: PageProps<"/[locale]/about">) {

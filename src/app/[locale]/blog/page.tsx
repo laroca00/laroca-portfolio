@@ -7,12 +7,13 @@ import { getPosts } from "@/content/load";
 import { isEnabledLocale } from "@/i18n/config";
 import { Link } from "@/i18n/routing";
 import { formatDate } from "@/lib/format";
+import { alternatesFor } from "@/lib/seo";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/blog">): Promise<Metadata> {
   const { locale } = await params;
   if (!isEnabledLocale(locale)) return {};
   const t = await getTranslations({ locale, namespace: "Blog" });
-  return { title: t("title"), description: t("intro") };
+  return { title: t("title"), description: t("intro"), alternates: alternatesFor(locale, "/blog") };
 }
 
 export default async function BlogPage({ params }: PageProps<"/[locale]/blog">) {

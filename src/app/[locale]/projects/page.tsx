@@ -8,12 +8,13 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { getProjects } from "@/content/load";
 import { isEnabledLocale } from "@/i18n/config";
 import { Link } from "@/i18n/routing";
+import { alternatesFor } from "@/lib/seo";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/projects">): Promise<Metadata> {
   const { locale } = await params;
   if (!isEnabledLocale(locale)) return {};
   const t = await getTranslations({ locale, namespace: "Projects" });
-  return { title: t("title"), description: t("intro") };
+  return { title: t("title"), description: t("intro"), alternates: alternatesFor(locale, "/projects") };
 }
 
 export default async function ProjectsPage({ params }: PageProps<"/[locale]/projects">) {

@@ -8,6 +8,7 @@ import { getProject, getProjects } from "@/content/load";
 import { renderMdx } from "@/content/mdx";
 import { isEnabledLocale } from "@/i18n/config";
 import { Link } from "@/i18n/routing";
+import { alternatesFor } from "@/lib/seo";
 
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
   if (!isEnabledLocale(params.locale)) return [];
@@ -18,7 +19,9 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/projects
   const { locale, slug } = await params;
   if (!isEnabledLocale(locale)) return {};
   const project = await getProject(locale, slug);
-  return project ? { title: project.title, description: project.tagline } : {};
+  return project
+    ? { title: project.title, description: project.tagline, alternates: alternatesFor(locale, `/projects/${slug}`) }
+    : {};
 }
 
 export default async function ProjectPage({ params }: PageProps<"/[locale]/projects/[slug]">) {
