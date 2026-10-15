@@ -25,6 +25,10 @@ export const projectFrontmatter = z.object({
   storeUrl: z.url().optional(),
   repoUrl: z.url().optional(),
   cover: z.string().optional(),
+  /** Tall screenshot of the live site (see `npm run capture:previews`); scrolls inside the card. */
+  preview: z.string().optional(),
+  /** App screenshots for mobile projects, shown in a phone that flips through them on scroll. */
+  screens: z.array(z.object({ src: z.string(), caption: z.string() })).optional(),
 });
 
 export const postFrontmatter = z.object({

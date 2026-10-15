@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
 import { expect, test, vi } from "vitest";
 import messages from "../../messages/tr.json";
@@ -85,4 +85,47 @@ test("case study and external links", () => {
 
   const serbian = within(screen.getByRole("region", { name: "Sırpça Öğren" }));
   expect(serbian.getAllByRole("link")).toHaveLength(1);
+});
+
+test("a project with a live preview scrolls a screenshot and only loads the site on mouse hover", async () => {
+  const { container } = render(
+    <NextIntlClientProvider locale="tr" messages={messages}>
+      <ProjectShowcase projects={[{ ...projects[0], preview: "/projects/green-future-balcony/preview.jpg" }]} />
+    </NextIntlClientProvider>,
+  );
+  expect(container.querySelector(".live-scroll")).not.toBeNull();
+  expect(container.querySelector("iframe")).toBeNull();
+
+  const frame = container.querySelector(".live-frame")!;
+  fireEvent.pointerEnter(frame, { pointerType: "touch" });
+  expect(container.querySelector("iframe")).toBeNull();
+
+  fireEvent.pointerEnter(frame, { pointerType: "mouse" });
+  const iframe = container.querySelector("iframe")!;
+  expect(iframe).toHaveAttribute("src", "https://greenfuturebalcony.com");
+  expect(iframe).toHaveAttribute("tabindex", "-1");
+});
+
+test("a mobile project with screens shows a phone whose dots pick the screen", () => {
+  render(
+    <NextIntlClientProvider locale="tr" messages={messages}>
+      <ProjectShowcase
+        projects={[
+          {
+            ...projects[2],
+            screens: [
+              { src: "/s/1.webp", caption: "Ana menü" },
+              { src: "/s/2.webp", caption: "Oyun masası" },
+            ],
+          },
+        ]}
+      />
+    </NextIntlClientProvider>,
+  );
+  expect(screen.getAllByRole("img", { name: /^Online Pişti — / })).toHaveLength(2);
+  fireEvent.click(screen.getByRole("button", { name: "Ekran 1: Ana menü" }));
+  expect(screen.getByText(/· Ana menü/)).toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button", { name: "Ekran 2: Oyun masası" }));
+  expect(screen.getByText(/· Oyun masası/)).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: "Ekran 2: Oyun masası" })).toHaveAttribute("aria-pressed", "true");
 });

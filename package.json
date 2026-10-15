@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "check:content": "tsx scripts/check-content.ts",
+    "capture:previews": "tsx scripts/capture-previews.ts",
     "prebuild": "npm run check:content",
     "predev": "npm run check:content",
     "format": "prettier --write src tests scripts messages content/**/*.json"

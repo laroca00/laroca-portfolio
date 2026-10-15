@@ -1,68 +1,132 @@
 @import "tailwindcss";
 
+/*
+ * Two moods share one set of tokens: "day" (warm paper, ink, hand-drawn) is the
+ * default; wrap a region in `.theme-night` (dark, gridded, terminal) to flip it.
+ * Utilities resolve the variables where they are used, so components never
+ * need to know which mood they sit in.
+ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-terminal: var(--terminal);
+  --color-link: var(--link);
+
+  --color-accent-green: var(--accent-green);
+  --color-accent-teal: var(--accent-teal);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-red: var(--accent-red);
+  --color-accent-amber: var(--accent-amber);
+}
+
 @theme {
-  --color-bg: #000000;
-  --color-surface: #161618;
-  --color-surface-2: #232326;
-  --color-border: rgb(255 255 255 / 0.09);
-  --color-text: #f5f5f7;
-  --color-muted: #a1a1a6;
-  --color-terminal: #7cff9b;
-  --color-link: #2997ff;
+  /* Fixed colors that look the same in both moods (nav pill, doodle tints). */
+  --color-ink: #1d1b16;
+  --color-paper: #f6f1e4;
+  --color-tint-sun: #ffd166;
+  --color-tint-sky: #a0e7e5;
+  --color-tint-rose: #ffadad;
+  --color-tint-leaf: #b9fbc0;
+  --color-tint-lilac: #cdb4fe;
 
-  --color-accent-green: #30d158;
-  --color-accent-teal: #40c8e0;
-  --color-accent-blue: #0a84ff;
-  --color-accent-violet: #bf5af2;
-  --color-accent-red: #ff453a;
-  --color-accent-amber: #ffb340;
-
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  /* System mono (SF Mono / Cascadia / Consolas): terminal accents only, no font download. */
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  --font-sans: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
 
   --text-display: clamp(2.75rem, 8vw, 6rem);
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.035em;
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.04em;
   --text-headline: clamp(2rem, 5vw, 3.5rem);
-  --text-headline--line-height: 1.06;
+  --text-headline--line-height: 1.04;
   --text-headline--letter-spacing: -0.03em;
+}
+
+:root,
+.theme-day {
+  --bg: #f6f1e4;
+  --surface: #efe7d4;
+  --surface-2: #e6dcc4;
+  --border: rgb(29 27 22 / 0.14);
+  --text: #1d1b16;
+  --muted: #5f584b;
+  --terminal: #1f6f3a;
+  --link: #b13a08;
+  --accent-green: #1f6f3a;
+  --accent-teal: #0e6873;
+  --accent-blue: #1f4fbf;
+  --accent-violet: #7339ad;
+  --accent-red: #b02d25;
+  --accent-amber: #855600;
+  --dot: rgb(29 27 22 / 0.07);
+}
+
+.theme-night {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-2: #21262d;
+  --border: rgb(240 246 252 / 0.1);
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --terminal: #7ee787;
+  --link: #ff8a4c;
+  --accent-green: #3fb950;
+  --accent-teal: #39c5cf;
+  --accent-blue: #58a6ff;
+  --accent-violet: #bc8cff;
+  --accent-red: #ff7b72;
+  --accent-amber: #e3b341;
+  --dot: rgb(240 246 252 / 0.045);
+
+  color-scheme: dark;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 @layer base {
   html {
-    color-scheme: dark;
+    color-scheme: light;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background: var(--color-bg);
-    color: var(--color-text);
+    background: var(--bg);
+    color: var(--text);
     font-family: var(--font-sans);
     font-size: 1.0625rem;
     line-height: 1.55;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-link);
+    outline: 2px solid var(--link);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
   ::selection {
-    background: rgb(41 151 255 / 0.35);
+    background: var(--color-tint-sun);
+    color: var(--color-ink);
   }
 }
 
-@utility text-gradient {
-  background: linear-gradient(180deg, #ffffff 30%, #8e8e93 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Faint dot paper for day, faint grid for night. */
+@utility bg-paper {
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--dot) 1px, transparent 1px), linear-gradient(90deg, var(--dot) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /*
- * Scroll-driven reveal. Pure CSS: content is fully visible without JS, in
+ * Scroll-driven motion. Pure CSS: content is fully visible without JS, in
  * browsers without view timelines, and whenever reduced motion is requested.
  */
 @media (prefers-reduced-motion: no-preference) {
@@ -73,25 +137,173 @@
       animation-range: entry 0% cover 30%;
     }
 
-    .reveal-scale {
-      animation: reveal-scale linear both;
+    .reveal-wipe {
+      animation: reveal-wipe linear both;
       animation-timeline: view();
-      animation-range: entry 0% cover 45%;
+      animation-range: entry 5% cover 40%;
     }
+
+    /* Live-site screenshot scrolls top-to-bottom inside its card while the card crosses the viewport. */
+    .live-frame {
+      view-timeline-name: --live;
+    }
+    .live-scroll {
+      animation: live-scroll linear both;
+      animation-timeline: --live;
+      animation-range: cover 15% cover 85%;
+    }
+
+    /* Doodles draw their own outlines as they scroll into view. */
+    .doodle-draw .doodle-line {
+      stroke-dasharray: 1;
+      animation: draw linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+
+    /* Day-to-night divider: the sun sinks, the moon rises, the prompt appears. */
+    .dusk-sun {
+      animation: sun-set linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 70%;
+    }
+    .dusk-moon {
+      animation: moon-rise linear both;
+      animation-timeline: view();
+      animation-range: cover 25% cover 85%;
+    }
+    .dusk-stars {
+      animation: fade-in linear both;
+      animation-timeline: view();
+      animation-range: cover 35% cover 75%;
+    }
+  }
+
+  /* The hero doodles draw once on load instead of on scroll. */
+  .draw-on-load .doodle-line {
+    stroke-dasharray: 1;
+    animation: draw 1.2s cubic-bezier(0.65, 0, 0.35, 1) 300ms both;
+  }
+
+  .rise {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--rise-delay, 0ms);
+  }
+
+  .float {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: var(--float-delay, 0ms);
+  }
+
+  .wiggle-on-hover:hover .doodle,
+  .group:hover .doodle-wiggle,
+  .doodle-wiggle:hover {
+    animation: wiggle 0.5s ease-in-out;
+  }
+
+  .blink {
+    animation: blink 1.1s step-end infinite;
+  }
+
+  .mascot-eyes {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: eye-blink 5s ease-in-out infinite;
   }
 }
 
+@keyframes eye-blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* No opacity here: text stays at full contrast at every point of the scroll. */
 @keyframes reveal {
   from {
-    opacity: 0;
+    filter: blur(6px);
     transform: translateY(2rem);
   }
 }
 
-@keyframes reveal-scale {
+@keyframes reveal-wipe {
   from {
-    opacity: 0.35;
-    transform: scale(0.86) translateY(3rem);
+    clip-path: inset(0 0 100% 0 round 14px);
+    transform: translateY(2.5rem);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 14px);
+  }
+}
+
+@keyframes live-scroll {
+  to {
+    transform: translateY(calc(-100% + 100cqh));
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes sun-set {
+  from {
+    transform: translateY(-30%);
+  }
+  to {
+    transform: translateY(140%);
+    opacity: 0;
+  }
+}
+
+@keyframes moon-rise {
+  from {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    filter: blur(8px);
+    transform: translateY(1.25rem);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-8px) rotate(4deg);
+  }
+}
+
+@keyframes wiggle {
+  25% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }
 
@@ -128,6 +340,18 @@
   }
 }
 
+/* Pointer tilt on project windows (TiltFrame sets --rx / --ry). */
+.tilt {
+  transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt {
+    transform: none;
+  }
+}
+
 /* Long-form MDX content (case studies, blog posts). */
 .prose-laroca {
   max-width: 46rem;
@@ -141,23 +365,32 @@
   & h2 {
     margin-top: 2.5em;
     font-size: 1.75rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.2;
+  }
+  & h2::before {
+    content: "## ";
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    font-weight: 400;
+    color: var(--color-link);
   }
   & h3 {
     margin-top: 2em;
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 700;
   }
   & p,
   & li {
-    color: color-mix(in srgb, var(--color-text) 82%, transparent);
+    color: color-mix(in srgb, var(--color-text) 85%, transparent);
   }
   & a {
     color: var(--color-link);
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
   }
   & ul {
     list-style: disc;
@@ -168,17 +401,20 @@
     padding-left: 1.25em;
   }
   & img {
-    border-radius: 20px;
+    border-radius: 14px;
     border: 1px solid var(--color-border);
   }
   & blockquote {
-    border-left: 2px solid var(--color-border);
+    border-left: 3px solid var(--color-link);
     padding-left: 1em;
+    font-family: var(--font-serif);
+    font-size: 1.35em;
+    font-style: italic;
     color: var(--color-muted);
   }
   & :not(pre) > code {
     font-family: var(--font-mono);
-    font-size: 0.9em;
+    font-size: 0.85em;
     padding: 0.15em 0.4em;
     border-radius: 6px;
     background: var(--color-surface-2);
@@ -188,7 +424,7 @@
     font-size: 0.875rem;
     line-height: 1.6;
     padding: 1.25rem 1.5rem;
-    border-radius: 20px;
+    border-radius: 14px;
     border: 1px solid var(--color-border);
     overflow-x: auto;
   }

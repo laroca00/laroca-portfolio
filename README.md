@@ -53,11 +53,23 @@ liveUrl: https://...      # isteğe bağlı
 storeUrl: https://play.google.com/store/apps/details?id=...   # isteğe bağlı
 repoUrl: https://github.com/...                               # isteğe bağlı
 cover: /projects/yeni-proje/cover.webp
+preview: /projects/yeni-proje/preview.jpg                     # isteğe bağlı, aşağıya bak
 ---
 
 ## Problem
 ...
 ```
+
+### Canlı site önizlemesi
+
+`liveUrl` alanı olan bir projenin ana sayfadaki kartında canlı sitenin önizlemesi gösterilebilir: sayfa kaydırıldıkça sitenin tam boy ekran görüntüsü kartın içinde aşağı kayar, fareyle üzerine gelince gerçek site yüklenir. Ekran görüntüsünü almak için:
+
+```bash
+npm run capture:previews              # liveUrl'si olan tüm projeler
+npm run capture:previews -- akgun     # yalnızca belirtilen projeler
+```
+
+Komut `public/projects/<slug>/preview.jpg` dosyasını oluşturur; ardından projenin ön bilgisine `preview: /projects/<slug>/preview.jpg` satırını ekle. Canlı site değiştikçe komutu yeniden çalıştır.
 
 ### Yeni blog yazısı
 

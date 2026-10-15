@@ -38,22 +38,22 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
   const accent = ACCENT_CLASSES[project.accent];
 
   return (
-    <article>
-      <header className="pt-20 pb-12 text-center md:pt-28">
-        <Container className="flex flex-col items-center">
-          <p className={`text-sm font-medium md:text-base ${accent.text}`}>{project.label}</p>
-          <h1 className="mt-3 text-display font-semibold">{project.title}</h1>
+    <article className="theme-night flex-1 bg-grid">
+      <header className="pt-32 pb-12 md:pt-40">
+        <Container>
+          <p className={`font-mono text-sm ${accent.text}`}>~/projeler/{project.slug} · {project.label} · {project.year}</p>
+          <h1 className="mt-4 text-display font-extrabold">{project.title}</h1>
           <p className="mt-6 max-w-[38rem] text-lg text-muted md:text-xl">{project.tagline}</p>
-          <ul aria-label={t("stack")} className="mt-8 flex flex-wrap justify-center gap-2">
+          <ul aria-label={t("stack")} className="mt-8 flex flex-wrap gap-2 font-mono">
             {project.stack.map((s) => (
-              <li key={s} className="rounded-full border border-border px-3 py-1 text-sm text-muted">
+              <li key={s} className="rounded-md border border-border bg-surface px-2.5 py-1 text-xs text-muted">
                 {s}
               </li>
             ))}
           </ul>
-          <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3 text-lg">
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-lg font-semibold">
             {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-link hover:underline">
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-link underline decoration-wavy decoration-1 underline-offset-[6px] hover:text-text">
                 {t("visit")} <span aria-hidden="true">↗</span>
               </a>
             )}
@@ -62,13 +62,13 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
                 href={project.storeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-link hover:underline"
+                className="text-link underline decoration-wavy decoration-1 underline-offset-[6px] hover:text-text"
               >
                 {t("store")} <span aria-hidden="true">↗</span>
               </a>
             )}
             {project.repoUrl && (
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="text-link hover:underline">
+              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="text-link underline decoration-wavy decoration-1 underline-offset-[6px] hover:text-text">
                 {t("repo")} <span aria-hidden="true">↗</span>
               </a>
             )}
@@ -79,7 +79,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
       {project.cover && (
         <Container>
           <div
-            className={`relative mx-auto aspect-[16/10] max-w-[980px] overflow-hidden rounded-[28px] border border-border shadow-[0_30px_120px_-20px] ${accent.glow}`}
+            className={`relative aspect-[16/10] overflow-hidden rounded-[14px] border border-border shadow-[0_30px_120px_-20px] ${accent.glow}`}
           >
             <Image
               src={project.cover}
@@ -100,20 +100,20 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
       <Container className="pb-24">
         <nav
           aria-label={t("pagination")}
-          className="mx-auto grid max-w-[46rem] gap-4 border-t border-border pt-8 sm:grid-cols-2"
+          className="mx-auto grid max-w-[46rem] gap-4 border-t border-dashed border-border pt-8 sm:grid-cols-2"
         >
           {prev ? (
             <Link href={`/projects/${prev.slug}`} className="group">
-              <span className="text-sm text-muted">{t("previous")}</span>
-              <span className="block text-lg font-semibold group-hover:text-link">{prev.title}</span>
+              <span className="font-mono text-sm text-muted">← {t("previous")}</span>
+              <span className="block text-lg font-bold group-hover:text-link">{prev.title}</span>
             </Link>
           ) : (
             <span />
           )}
           {next && (
             <Link href={`/projects/${next.slug}`} className="group sm:text-right">
-              <span className="text-sm text-muted">{t("next")}</span>
-              <span className="block text-lg font-semibold group-hover:text-link">{next.title}</span>
+              <span className="font-mono text-sm text-muted">{t("next")} →</span>
+              <span className="block text-lg font-bold group-hover:text-link">{next.title}</span>
             </Link>
           )}
         </nav>

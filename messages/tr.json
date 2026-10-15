@@ -33,7 +33,26 @@
     "ctaProjects": "Projeleri gör",
     "ctaContact": "İletişime geç"
   },
+  "Mascot": {
+    "label": "Bit'e dokun, bir şey söylesin",
+    "lines": [
+      "Selam! Ben Bit, Tuğberk'in terminali.",
+      "Aşağı kaydır; gece olunca projeler çıkıyor.",
+      "Ctrl + K'ye bas, sana kısayolları göstereyim.",
+      "Bugün sıfır bug. Şimdilik.",
+      "Pişti oynar mısın? Ben hep kaybediyorum."
+    ]
+  },
+  "Dusk": {
+    "line": "gece mesaisi başlıyor"
+  },
   "Showcase": {
+    "command": "ls ~/projeler --secili",
+    "live": "canlı",
+    "liveLoading": "bağlanıyor…",
+    "liveHint": "canlı görmek için üzerine gel",
+    "liveTitle": "{title} sitesinin canlı önizlemesi",
+    "screen": "Ekran {n}: {caption}",
     "readCase": "Vaka çalışmasını oku",
     "visit": "Siteye git",
     "store": "Play Store'da gör",

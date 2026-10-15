@@ -27,29 +27,29 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
 
   return (
     <>
-      <PageHeader title={t("title")} intro={profile.bio}>
+      <PageHeader title={t("title")} intro={profile.bio} doodle="person">
         <a
           href={`/cv/${locale}.pdf`}
           download={`Tugberk-Emre-Akkurt-CV-${locale}.pdf`}
-          className="mt-8 inline-flex rounded-full bg-text px-6 py-3 text-sm font-medium text-bg transition-opacity hover:opacity-85"
+          className="mt-8 inline-flex rounded-full border-2 border-ink bg-ink px-6 py-3 text-sm font-semibold text-paper shadow-[4px_4px_0] shadow-link transition-transform hover:-translate-y-0.5"
         >
           {t("cv")}
         </a>
       </PageHeader>
       <Container className="grid gap-16 pb-24 md:grid-cols-[1fr_18rem]">
         <section aria-labelledby="timeline-title">
-          <h2 id="timeline-title" className="mb-10 text-2xl font-semibold tracking-tight">
+          <h2 id="timeline-title" className="mb-10 text-2xl font-extrabold tracking-tight">
             {t("timeline")}
           </h2>
           <Timeline items={experience} />
         </section>
         <section aria-labelledby="stack-title">
-          <h2 id="stack-title" className="mb-6 text-2xl font-semibold tracking-tight">
+          <h2 id="stack-title" className="mb-6 text-2xl font-extrabold tracking-tight">
             {t("stack")}
           </h2>
           <ul className="flex flex-wrap gap-2">
             {profile.stack.map((s) => (
-              <li key={s} className="rounded-full border border-border bg-surface px-3.5 py-1.5 text-sm">
+              <li key={s} className="rounded-lg border-2 border-ink px-3 py-1 text-sm font-semibold">
                 {s}
               </li>
             ))}

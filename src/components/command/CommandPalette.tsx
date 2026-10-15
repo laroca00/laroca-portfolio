@@ -75,7 +75,7 @@ export function CommandPalette({ projects, email, locales, defaultOpen = false }
       }}
       label={t("label")}
       overlayClassName="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
-      contentClassName="fixed left-1/2 top-[12vh] z-50 w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-[22px] border border-border bg-surface font-mono shadow-2xl"
+      contentClassName="theme-night fixed left-1/2 top-[12vh] z-50 w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-[22px] border border-border bg-surface font-mono shadow-2xl"
     >
       <div className="flex items-center gap-2 border-b border-border px-4">
         <span aria-hidden="true" className="text-sm text-terminal">

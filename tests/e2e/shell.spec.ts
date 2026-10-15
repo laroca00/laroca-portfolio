@@ -17,8 +17,8 @@ test("skip link is the first tab stop and focuses main", async ({ page, browserN
   await expect(page.locator("#main")).toBeFocused();
 });
 
-test("page background is black", async ({ page }) => {
+test("page background is warm paper", async ({ page }) => {
   await page.goto("/tr");
   const bg = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
-  expect(bg).toBe("rgb(0, 0, 0)");
+  expect(bg).toBe("rgb(246, 241, 228)");
 });

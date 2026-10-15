@@ -5,13 +5,13 @@ export function TerminalCard({ lines, className = "" }: { lines: TerminalLine[];
   const t = useTranslations("Terminal");
   return (
     <figure
-      className={`flex flex-col overflow-hidden rounded-[28px] border border-terminal/15 bg-[#050806] font-mono text-[13px] leading-relaxed ${className}`}
+      className={`theme-night flex flex-col overflow-hidden rounded-2xl border-2 border-ink bg-grid font-mono text-[13px] leading-relaxed shadow-[6px_6px_0] shadow-ink ${className}`}
     >
-      <figcaption className="flex items-center gap-2 border-b border-white/5 px-5 py-3 text-xs text-muted">
+      <figcaption className="flex items-center gap-2 border-b border-border bg-surface px-5 py-3 text-xs text-muted">
         <span aria-hidden="true" className="flex gap-1.5">
-          <span className="size-2.5 rounded-full bg-white/15" />
-          <span className="size-2.5 rounded-full bg-white/15" />
-          <span className="size-2.5 rounded-full bg-white/15" />
+          <span className="size-2.5 rounded-full bg-tint-rose" />
+          <span className="size-2.5 rounded-full bg-tint-sun" />
+          <span className="size-2.5 rounded-full bg-tint-leaf" />
         </span>
         <span className="ml-2">{t("title")}</span>
       </figcaption>

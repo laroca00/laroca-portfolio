@@ -8,7 +8,7 @@ import type { ContactField, ContactState } from "@/lib/contact";
 const INITIAL: ContactState = { status: "idle" };
 
 const inputClass =
-  "w-full rounded-2xl border border-border bg-surface px-4 py-3.5 text-base text-text placeholder:text-muted/70 transition-colors focus:border-link focus:outline-none aria-[invalid=true]:border-accent-red";
+  "w-full rounded-xl border-2 border-border bg-surface px-4 py-3.5 text-base text-text placeholder:text-muted/70 transition-colors focus:border-link focus:outline-none aria-[invalid=true]:border-accent-red";
 
 export function ContactForm({ email }: { email: string }) {
   const t = useTranslations("Contact");
@@ -17,7 +17,7 @@ export function ContactForm({ email }: { email: string }) {
 
   const field = (name: ContactField, input: React.ReactNode) => (
     <div className="flex flex-col gap-2 text-left">
-      <label htmlFor={`contact-${name}`} className="text-sm text-muted">
+      <label htmlFor={`contact-${name}`} className="font-mono text-sm text-muted">
         {t(`fields.${name}`)}
       </label>
       {input}
@@ -39,7 +39,7 @@ export function ContactForm({ email }: { email: string }) {
 
   if (state.status === "success") {
     return (
-      <p role="status" className="rounded-[28px] bg-surface p-8 text-lg">
+      <p role="status" className="rounded-2xl border-2 border-terminal bg-surface p-8 font-mono text-lg">
         {t("success")}
       </p>
     );
@@ -58,15 +58,15 @@ export function ContactForm({ email }: { email: string }) {
         <input id="contact-company" name="company" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="flex flex-col items-center gap-4 pt-2">
+      <div className="flex flex-col items-start gap-4 pt-2">
         <button
           type="submit"
           disabled={pending}
-          className="rounded-full bg-text px-8 py-3.5 text-sm font-medium text-bg transition-opacity hover:opacity-85 disabled:opacity-50"
+          className="rounded-full bg-text px-8 py-3.5 text-sm font-semibold text-bg shadow-[4px_4px_0] shadow-link transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-none disabled:opacity-50"
         >
           {pending ? t("sending") : t("submit")}
         </button>
-        <p aria-live="polite" className="min-h-6 text-center text-sm">
+        <p aria-live="polite" className="min-h-6 text-sm">
           {state.status === "rate_limited" && <span className="text-accent-amber">{t("rateLimited")}</span>}
           {state.status === "error" && (
             <span className="text-accent-red">

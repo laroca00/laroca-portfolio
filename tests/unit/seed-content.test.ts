@@ -18,6 +18,8 @@ test("seed content is valid and complete", async () => {
     "empower-eu",
     "online-pisti",
     "sirpca-ogren",
+    "akgun",
+    "3dcare",
   ]);
   expect(projects.find((p) => p.slug === "green-future-balcony")?.liveUrl).toBe("https://greenfuturebalcony.com");
   expect(projects.find((p) => p.slug === "empower-eu")?.liveUrl).toBe("https://empoweringadultswithdisabilities.com");

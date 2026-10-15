@@ -11,7 +11,7 @@ export async function Footer({ profile }: { profile: Profile }) {
   const t = await getTranslations("Footer");
   const year = await buildYear();
   return (
-    <footer className="mt-auto border-t border-border py-10 text-sm text-muted">
+    <footer className="theme-night mt-auto border-t border-border py-10 font-mono text-sm text-muted">
       <Container className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <p>
           © {year} LaRoca Dev — {profile.name}

@@ -43,15 +43,15 @@ export default async function PostPage({ params }: PageProps<"/[locale]/blog/[sl
 
   return (
     <article className="pb-24">
-      <header className="pt-20 pb-12 md:pt-28">
+      <header className="pt-32 pb-12 md:pt-40">
         <Container>
           <div className="mx-auto max-w-[46rem]">
-            <Link href="/blog" className="text-sm text-link hover:underline">
+            <Link href="/blog" className="font-mono text-sm text-link hover:underline">
               <span aria-hidden="true">‹</span> {t("back")}
             </Link>
-            <h1 className="mt-6 text-headline font-semibold">{post.title}</h1>
+            <h1 className="mt-6 text-headline font-extrabold">{post.title}</h1>
             <p className="mt-5 text-lg text-muted">{post.description}</p>
-            <p className="mt-6 flex flex-wrap gap-x-4 text-sm text-muted">
+            <p className="mt-6 flex flex-wrap gap-x-4 font-mono text-sm text-muted">
               <time dateTime={post.date.toISOString().slice(0, 10)}>{formatDate(post.date, locale)}</time>
               <span>{tp("readingTime", { minutes: post.readingMinutes })}</span>
             </p>

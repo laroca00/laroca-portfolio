@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Bricolage_Grotesque, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -14,7 +14,14 @@ import { personJsonLd, alternatesFor } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 import "../globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin", "latin-ext"] });
+const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin", "latin-ext"] });
+const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin", "latin-ext"] });
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
+  style: "italic",
+});
 
 export function generateStaticParams() {
   return enabledLocales().map((locale) => ({ locale }));
@@ -46,12 +53,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   ]);
 
   return (
-    <html lang={locale} className={`${geistSans.variable} antialiased`}>
+    <html lang={locale} className={`${bricolage.variable} ${jetbrains.variable} ${instrument.variable} antialiased`}>
       <body className="flex min-h-svh flex-col">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <a
             href="#main"
-            className="sr-only z-50 rounded-md bg-text px-3 py-2 text-sm text-bg focus:not-sr-only focus:fixed focus:left-4 focus:top-2"
+            className="sr-only z-50 rounded-md bg-ink px-3 py-2 text-sm text-paper focus:not-sr-only focus:fixed focus:left-4 focus:top-2"
           >
             {t("skip")}
           </a>

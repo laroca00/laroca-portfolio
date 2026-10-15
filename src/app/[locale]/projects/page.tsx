@@ -3,6 +3,8 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ACCENT_CLASSES } from "@/components/accent";
+import { Doodle } from "@/components/Doodle";
+import { CATEGORY_DOODLE } from "@/components/home/ProjectShowcase";
 import { Container } from "@/components/layout/Container";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { getProjects } from "@/content/load";
@@ -25,32 +27,44 @@ export default async function ProjectsPage({ params }: PageProps<"/[locale]/proj
   const ordered = [...projects.filter((p) => p.featured), ...projects.filter((p) => !p.featured)];
 
   return (
-    <>
-      <PageHeader title={t("title")} intro={t("intro")} />
+    <div className="theme-night flex-1 bg-grid">
+      <PageHeader title={t("title")} intro={t("intro")} doodle="folder" />
       <Container className="pb-24">
-        <ul className="grid gap-x-6 gap-y-14 md:grid-cols-2">
-          {ordered.map((p) => (
-            <li key={p.slug}>
-              <Link href={`/projects/${p.slug}`} className="group block">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[24px] border border-border bg-surface">
+        <ul className="border-b border-dashed border-border">
+          {ordered.map((p, i) => (
+            <li key={p.slug} className="reveal border-t border-dashed border-border">
+              <Link
+                href={`/projects/${p.slug}`}
+                className="group grid items-center gap-5 py-8 md:grid-cols-[4rem_1fr_15rem] md:gap-8"
+              >
+                <span className={`font-mono text-sm ${ACCENT_CLASSES[p.accent].text}`}>
+                  P-{String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex gap-4">
+                  <Doodle
+                    name={CATEGORY_DOODLE[p.category]}
+                    className="doodle-wiggle mt-1 hidden size-9 shrink-0 sm:block"
+                  />
+                  <div>
+                    <h2 className="text-2xl font-extrabold tracking-tight transition-colors group-hover:text-link md:text-4xl">
+                      {p.title}
+                    </h2>
+                    <p className="mt-2 max-w-[36rem] text-muted">{p.tagline}</p>
+                    <p className="mt-3 font-mono text-xs text-muted">
+                      {p.label} · {p.year}
+                    </p>
+                  </div>
+                </div>
+                <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-border bg-surface transition-transform duration-300 group-hover:-rotate-2 group-hover:scale-105 motion-reduce:transition-none">
                   {p.cover && (
-                    <Image
-                      src={p.cover}
-                      alt=""
-                      fill
-                      sizes="(min-width: 768px) 576px, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
-                    />
+                    <Image src={p.cover} alt="" fill sizes="(min-width: 768px) 240px, 100vw" className="object-cover" />
                   )}
                 </div>
-                <p className={`mt-5 text-sm font-medium ${ACCENT_CLASSES[p.accent].text}`}>{p.label}</p>
-                <h2 className="mt-1 text-2xl font-semibold tracking-tight group-hover:text-link">{p.title}</h2>
-                <p className="mt-2 max-w-[34rem] text-muted">{p.tagline}</p>
               </Link>
             </li>
           ))}
         </ul>
       </Container>
-    </>
+    </div>
   );
 }

@@ -28,18 +28,18 @@ export default async function BlogPage({ params }: PageProps<"/[locale]/blog">) 
 
   return (
     <>
-      <PageHeader title={t("title")} intro={t("intro")} />
+      <PageHeader title={t("title")} intro={t("intro")} doodle="book" />
       <Container className="pb-24">
         {posts.length === 0 ? (
           <p className="text-muted">{t("empty")}</p>
         ) : (
           <div className="max-w-[46rem]">
             {posts.map((p) => (
-              <article key={p.slug} className="border-t border-border py-10">
-                <time dateTime={p.date.toISOString().slice(0, 10)} className="text-sm text-muted">
+              <article key={p.slug} className="border-t border-dashed border-border py-10">
+                <time dateTime={p.date.toISOString().slice(0, 10)} className="font-mono text-sm text-muted">
                   {formatDate(p.date, locale)}
                 </time>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
+                <h2 className="mt-2 text-2xl font-extrabold tracking-tight md:text-3xl">
                   <Link href={`/blog/${p.slug}`} className="hover:text-link">
                     {p.title}
                   </Link>
