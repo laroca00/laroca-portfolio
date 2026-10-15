@@ -106,6 +106,12 @@
     "title": "Projeler",
     "intro": "Uluslararası proje sitelerinden mobil oyunlara kadar üzerinde çalıştığım işler."
   },
+  "Case": {
+    "toc": "İçindekiler",
+    "metrics": "Rakamlarla",
+    "compare": "{before} ile {after} karşılaştırması",
+    "compareHint": "← sürükle ya da ok tuşlarını kullan →"
+  },
   "Project": {
     "stack": "Kullanılan teknolojiler",
     "visit": "Siteye git",

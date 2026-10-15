@@ -3,9 +3,14 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ACCENT_CLASSES } from "@/components/accent";
+import { CaseToc } from "@/components/case/CaseToc";
+import { Metrics } from "@/components/case/Metrics";
+import { PhoneGallery } from "@/components/case/PhoneGallery";
+import { BrowserWindow } from "@/components/devices/BrowserWindow";
+import { LivePreview } from "@/components/home/LivePreview";
 import { Container } from "@/components/layout/Container";
 import { getProject, getProjects } from "@/content/load";
-import { renderMdx } from "@/content/mdx";
+import { mdxSections, renderMdx } from "@/content/mdx";
 import { isEnabledLocale } from "@/i18n/config";
 import { Link } from "@/i18n/routing";
 import { alternatesFor } from "@/lib/seo";
@@ -28,20 +33,27 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
   const { locale, slug } = await params;
   if (!isEnabledLocale(locale)) notFound();
   setRequestLocale(locale);
-  const [projects, t] = await Promise.all([getProjects(locale), getTranslations({ locale, namespace: "Project" })]);
+  const [projects, t, tc] = await Promise.all([
+    getProjects(locale),
+    getTranslations({ locale, namespace: "Project" }),
+    getTranslations({ locale, namespace: "Case" }),
+  ]);
   const index = projects.findIndex((p) => p.slug === slug);
   if (index === -1) notFound();
   const project = projects[index];
   const prev = projects[index - 1];
   const next = projects[index + 1];
   const body = await renderMdx(project.body);
+  const sections = mdxSections(project.body);
   const accent = ACCENT_CLASSES[project.accent];
 
   return (
     <article className="theme-night flex-1 bg-grid">
       <header className="pt-32 pb-12 md:pt-40">
         <Container>
-          <p className={`font-mono text-sm ${accent.text}`}>~/projeler/{project.slug} · {project.label} · {project.year}</p>
+          <p className={`font-mono text-sm ${accent.text}`}>
+            ~/projeler/{project.slug} · {project.label} · {project.year}
+          </p>
           <h1 className="mt-4 text-display font-extrabold">{project.title}</h1>
           <p className="mt-6 max-w-[38rem] text-lg text-muted md:text-xl">{project.tagline}</p>
           <ul aria-label={t("stack")} className="mt-8 flex flex-wrap gap-2 font-mono">
@@ -53,7 +65,12 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
           </ul>
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-lg font-semibold">
             {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-link underline decoration-wavy decoration-1 underline-offset-[6px] hover:text-text">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link underline decoration-wavy decoration-1 underline-offset-[6px] hover:text-text"
+              >
                 {t("visit")} <span aria-hidden="true">↗</span>
               </a>
             )}
@@ -68,7 +85,12 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
               </a>
             )}
             {project.repoUrl && (
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="text-link underline decoration-wavy decoration-1 underline-offset-[6px] hover:text-text">
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-link underline decoration-wavy decoration-1 underline-offset-[6px] hover:text-text"
+              >
                 {t("repo")} <span aria-hidden="true">↗</span>
               </a>
             )}
@@ -76,25 +98,53 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
         </Container>
       </header>
 
-      {project.cover && (
-        <Container>
-          <div
-            className={`relative aspect-[16/10] overflow-hidden rounded-[14px] border border-border shadow-[0_30px_120px_-20px] ${accent.glow}`}
+      <Container>
+        {project.screens?.length ? (
+          <PhoneGallery screens={project.screens} title={project.title} />
+        ) : project.preview && project.liveUrl ? (
+          <BrowserWindow
+            path={project.liveUrl.replace(/^https?:\/\//, "")}
+            className={`shadow-[0_30px_120px_-20px] ${accent.glow}`}
           >
-            <Image
-              src={project.cover}
-              alt={t("coverAlt", { title: project.title })}
-              fill
-              priority
-              sizes="(min-width: 1024px) 980px, 100vw"
-              className="object-cover"
-            />
-          </div>
+            <LivePreview src={project.preview} url={project.liveUrl} title={project.title} />
+          </BrowserWindow>
+        ) : (
+          project.cover && (
+            <div
+              className={`relative aspect-[16/10] overflow-hidden rounded-[14px] border border-border shadow-[0_30px_120px_-20px] ${accent.glow}`}
+            >
+              <Image
+                src={project.cover}
+                alt={t("coverAlt", { title: project.title })}
+                fill
+                priority
+                sizes="(min-width: 1024px) 980px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          )
+        )}
+      </Container>
+
+      {project.metrics?.length ? (
+        <Container className="mt-20">
+          <Metrics items={project.metrics} label={tc("metrics")} />
         </Container>
-      )}
+      ) : null}
 
       <Container className="py-20">
-        <div className="prose-laroca mx-auto">{body}</div>
+        {sections.length > 1 ? (
+          <div className="grid gap-12 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-16">
+            <aside className="hidden md:block">
+              <div className="sticky top-28">
+                <CaseToc items={sections} />
+              </div>
+            </aside>
+            <div className="prose-laroca">{body}</div>
+          </div>
+        ) : (
+          <div className="prose-laroca mx-auto">{body}</div>
+        )}
       </Container>
 
       <Container className="pb-24">

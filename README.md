@@ -71,6 +71,31 @@ npm run capture:previews -- akgun     # yalnızca belirtilen projeler
 
 Komut `public/projects/<slug>/preview.jpg` dosyasını oluşturur; ardından projenin ön bilgisine `preview: /projects/<slug>/preview.jpg` satırını ekle. Canlı site değiştikçe komutu yeniden çalıştır.
 
+### Vaka çalışması parçaları
+
+Proje sayfası ön bilgideki alanlara göre kendini kurar; `##` başlıklarından yan tarafta bir içindekiler listesi oluşur.
+
+```mdx
+metrics:                      # sayaçla dolan büyük rakamlar
+  - { value: "120+", label: katılımcı }
+screens:                      # mobil uygulamalar: iPhone çerçevelerinde ekranlar (1206×2622)
+  - { src: /projects/<slug>/screens/home.webp, caption: Ana sayfa }
+```
+
+Metnin içine sürüklenebilir önce/sonra karşılaştırması:
+
+```mdx
+<Compare
+  before="/projects/<slug>/eski.webp"
+  after="/projects/<slug>/yeni.webp"
+  beforeLabel="Önce"
+  afterLabel="Sonra"
+  alt="Ana sayfa"
+/>
+```
+
+Görsel dosyasını değiştirirken yeni bir ad ver; aynı ad kalırsa önbellek eski görseli göstermeye devam edebilir.
+
 ### Yeni blog yazısı
 
 `content/tr/blog/yazi-adi.mdx` — ön bilgi alanları: `title`, `description`, `date: 2026-10-20`, `tags: [nextjs]`, `draft: false`. `draft: true` olan yazılar yalnızca geliştirme modunda görünür.

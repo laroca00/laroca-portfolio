@@ -373,7 +373,7 @@
   max-width: 46rem;
   font-size: 1.125rem;
   line-height: 1.7;
-  color: var(--color-text);
+  color: var(--text);
 
   & > * + * {
     margin-top: 1.25em;
@@ -390,7 +390,7 @@
     font-family: var(--font-mono);
     font-size: 0.7em;
     font-weight: 400;
-    color: var(--color-link);
+    color: var(--link);
   }
   & h3 {
     margin-top: 2em;
@@ -399,10 +399,10 @@
   }
   & p,
   & li {
-    color: color-mix(in srgb, var(--color-text) 85%, transparent);
+    color: color-mix(in srgb, var(--text) 85%, transparent);
   }
   & a {
-    color: var(--color-link);
+    color: var(--link);
     text-decoration: underline;
     text-decoration-style: wavy;
     text-decoration-thickness: 1px;
@@ -416,24 +416,24 @@
     list-style: decimal;
     padding-left: 1.25em;
   }
-  & img {
+  & p > img {
     border-radius: 14px;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--border);
   }
   & blockquote {
-    border-left: 3px solid var(--color-link);
+    border-left: 3px solid var(--link);
     padding-left: 1em;
     font-family: var(--font-serif);
     font-size: 1.35em;
     font-style: italic;
-    color: var(--color-muted);
+    color: var(--muted);
   }
   & :not(pre) > code {
     font-family: var(--font-mono);
     font-size: 0.85em;
     padding: 0.15em 0.4em;
     border-radius: 6px;
-    background: var(--color-surface-2);
+    background: var(--surface-2);
   }
   & pre {
     font-family: var(--font-mono);
@@ -441,7 +441,7 @@
     line-height: 1.6;
     padding: 1.25rem 1.5rem;
     border-radius: 14px;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--border);
     overflow-x: auto;
   }
 }

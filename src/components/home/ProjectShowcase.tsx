@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import type { Project } from "@/content/schema";
 import { Link } from "@/i18n/routing";
 import { ACCENT_CLASSES } from "../accent";
+import { BrowserWindow } from "../devices/BrowserWindow";
 import { Doodle, type DoodleName } from "../Doodle";
 import { Container } from "../layout/Container";
 import { TiltFrame } from "../motion/TiltFrame";
@@ -84,18 +85,7 @@ export function ProjectShowcase({ projects }: { projects: Project[] }) {
                 </div>
               ) : (
                 <TiltFrame className={`md:col-span-7 ${flip ? "md:order-1" : ""}`}>
-                  <div
-                    data-testid="project-cover"
-                    className="reveal-wipe overflow-hidden rounded-[14px] border border-border bg-surface shadow-[0_40px_80px_-30px_rgb(0_0_0/0.8)]"
-                  >
-                    <div className="flex items-center gap-2 border-b border-border px-4 py-2.5 font-mono text-xs text-muted">
-                      <span aria-hidden="true" className="flex gap-1.5">
-                        <span className="size-2.5 rounded-full bg-tint-rose" />
-                        <span className="size-2.5 rounded-full bg-tint-sun" />
-                        <span className="size-2.5 rounded-full bg-tint-leaf" />
-                      </span>
-                      <span className="ml-2 truncate">~/projeler/{p.slug}</span>
-                    </div>
+                  <BrowserWindow data-testid="project-cover" path={`~/projeler/${p.slug}`} className="reveal-wipe">
                     {p.preview && p.liveUrl ? (
                       <LivePreview src={p.preview} url={p.liveUrl} title={p.title} />
                     ) : (
@@ -111,7 +101,7 @@ export function ProjectShowcase({ projects }: { projects: Project[] }) {
                         )}
                       </div>
                     )}
-                  </div>
+                  </BrowserWindow>
                 </TiltFrame>
               )}
             </Container>

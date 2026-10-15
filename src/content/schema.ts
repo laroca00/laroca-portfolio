@@ -29,6 +29,8 @@ export const projectFrontmatter = z.object({
   preview: z.string().optional(),
   /** App screenshots for mobile projects, shown in a phone that flips through them on scroll. */
   screens: z.array(z.object({ src: z.string(), caption: z.string() })).optional(),
+  /** Headline numbers for the case study ("120+", "%36", "24"). */
+  metrics: z.array(z.object({ value: z.string(), label: z.string() })).optional(),
 });
 
 export const postFrontmatter = z.object({
