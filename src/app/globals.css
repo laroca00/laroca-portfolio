@@ -153,6 +153,16 @@
       animation-range: cover 15% cover 85%;
     }
 
+    /* Contribution cells pop in week by week, left to right, as the card scrolls in. */
+    .contrib-grid {
+      view-timeline-name: --contrib;
+    }
+    .contrib-cell {
+      animation: pop linear both;
+      animation-timeline: --contrib;
+      animation-range: cover calc(var(--week, 0) * 0.4%) cover calc(10% + var(--week, 0) * 0.4%);
+    }
+
     /* Doodles draw their own outlines as they scroll into view. */
     .doodle-draw .doodle-line {
       stroke-dasharray: 1;
@@ -238,6 +248,12 @@
   }
   to {
     clip-path: inset(0 0 0 0 round 14px);
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0);
   }
 }
 

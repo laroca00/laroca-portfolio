@@ -1,13 +1,16 @@
 import "server-only";
 import { cacheLife } from "next/cache";
 import type { ChangelogEntry } from "@/content/schema";
-import { getTerminalLines } from "./github";
+import { getGithubActivity } from "./github";
 
 export const GITHUB_USERNAME = "laroca00";
 
-/** Cached for an hour so the GitHub API is hit at most hourly per deployment. */
-export async function getTerminalFeed(fallback: ChangelogEntry[]) {
+/**
+ * Cached for an hour so GitHub is hit at most hourly per deployment. Set
+ * GITHUB_TOKEN to include private repos and private contribution counts.
+ */
+export async function getGithubFeed(fallback: ChangelogEntry[]) {
   "use cache";
   cacheLife("hours");
-  return getTerminalLines({ username: GITHUB_USERNAME, fallback });
+  return getGithubActivity({ username: GITHUB_USERNAME, fallback, token: process.env.GITHUB_TOKEN });
 }

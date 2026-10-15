@@ -1,8 +1,18 @@
-import { useTranslations } from "next-intl";
-import type { TerminalLine } from "@/lib/github";
+import type { CSSProperties } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import type { ContributionCalendar, TerminalLine } from "@/lib/github";
 
-export function TerminalCard({ lines, className = "" }: { lines: TerminalLine[]; className?: string }) {
+const LEVEL_CLASS = ["bg-surface-2", "bg-terminal/30", "bg-terminal/55", "bg-terminal/80", "bg-terminal"];
+/** On narrow screens only the latest half-year fits. */
+const MOBILE_WEEKS = 26;
+
+type TerminalCardProps = { lines: TerminalLine[]; calendar?: ContributionCalendar | null; className?: string };
+
+export function TerminalCard({ lines, calendar = null, className = "" }: TerminalCardProps) {
   const t = useTranslations("Terminal");
+  const locale = useLocale();
+  const day = new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+
   return (
     <figure
       className={`theme-night flex flex-col overflow-hidden rounded-2xl border-2 border-ink bg-grid font-mono text-[13px] leading-relaxed shadow-[6px_6px_0] shadow-ink ${className}`}
@@ -29,7 +39,38 @@ export function TerminalCard({ lines, className = "" }: { lines: TerminalLine[];
             </li>
           ))}
         </ol>
-        <p aria-hidden="true" className="mt-2 text-muted">
+
+        {calendar && (
+          <div className="mt-5">
+            <p className="text-muted">
+              ~/laroca $ <span className="text-text">{t("calendarCommand")}</span>
+            </p>
+            <div role="img" aria-label={t("calendarTotal", { total: calendar.total })} className="mt-3 flex gap-[3px]">
+              {calendar.weeks.map((week, w) => (
+                <div
+                  key={week[0]?.date ?? w}
+                  className={`flex flex-1 flex-col gap-[3px] ${w === 0 ? "justify-end" : ""} ${w < calendar.weeks.length - MOBILE_WEEKS ? "max-sm:hidden" : ""}`}
+                >
+                  {week.map((d) => (
+                    <span
+                      key={d.date}
+                      title={
+                        d.count === null
+                          ? day.format(new Date(d.date))
+                          : t("calendarDay", { date: day.format(new Date(d.date)), count: d.count })
+                      }
+                      className={`contrib-cell aspect-square rounded-[2px] ${LEVEL_CLASS[d.level]}`}
+                      style={{ "--week": w } as CSSProperties}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-muted">{t("calendarTotal", { total: calendar.total })}</p>
+          </div>
+        )}
+
+        <p aria-hidden="true" className="mt-3 text-muted">
           ~/laroca $ <span className="typed-caret text-terminal">▍</span>
         </p>
       </div>

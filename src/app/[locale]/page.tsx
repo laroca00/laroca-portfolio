@@ -12,7 +12,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { Container } from "@/components/layout/Container";
 import { getChangelog, getPosts, getProfile, getProjects, getServices, getTestimonials } from "@/content/load";
 import { isEnabledLocale } from "@/i18n/config";
-import { getTerminalFeed } from "@/lib/terminal-feed";
+import { getGithubFeed } from "@/lib/terminal-feed";
 
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
@@ -27,12 +27,12 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
     getPosts(locale),
     getTranslations({ locale, namespace: "Contact" }),
   ]);
-  const terminalLines = await getTerminalFeed(changelog);
+  const github = await getGithubFeed(changelog);
 
   return (
     <>
       <Hero profile={profile} />
-      <Bento profile={profile} terminalLines={terminalLines} />
+      <Bento profile={profile} terminalLines={github.lines} calendar={github.calendar} />
       <Dusk />
       <div className="theme-night">
         <ProjectShowcase projects={projects} />

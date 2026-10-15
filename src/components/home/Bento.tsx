@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import type { Profile } from "@/content/schema";
 import { Link } from "@/i18n/routing";
-import type { TerminalLine } from "@/lib/github";
+import type { ContributionCalendar, TerminalLine } from "@/lib/github";
 import { Doodle } from "../Doodle";
 import { Container } from "../layout/Container";
 import { TerminalCard } from "./TerminalCard";
@@ -9,7 +9,9 @@ import { TerminalCard } from "./TerminalCard";
 const STICKER_TINTS = ["bg-tint-sun", "bg-tint-sky", "bg-tint-rose", "bg-tint-leaf", "bg-tint-lilac"];
 const STICKER_TILTS = ["-rotate-2", "rotate-1", "-rotate-1", "rotate-2"];
 
-export function Bento({ profile, terminalLines }: { profile: Profile; terminalLines: TerminalLine[] }) {
+type BentoProps = { profile: Profile; terminalLines: TerminalLine[]; calendar?: ContributionCalendar | null };
+
+export function Bento({ profile, terminalLines, calendar = null }: BentoProps) {
   const t = useTranslations("Bento");
 
   return (
@@ -65,7 +67,7 @@ export function Bento({ profile, terminalLines }: { profile: Profile; terminalLi
         </div>
 
         <div className="flex flex-col gap-12">
-          <TerminalCard lines={terminalLines} className="reveal md:rotate-1" />
+          <TerminalCard lines={terminalLines} calendar={calendar} className="reveal md:rotate-1" />
           <div className="reveal">
             <h3 className="font-mono text-sm text-muted">{`// ${t("stack")}`}</h3>
             <ul className="mt-5 flex flex-wrap gap-3">

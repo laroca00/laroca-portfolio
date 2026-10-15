@@ -52,3 +52,27 @@ test("open-to-work badge only when openToWork", () => {
   renderBento({ ...profile, openToWork: false });
   expect(screen.getAllByText("Yeni projelere açığım")).toHaveLength(1);
 });
+
+test("contribution calendar renders one cell per day with its total", () => {
+  render(
+    <NextIntlClientProvider locale="tr" messages={messages}>
+      <Bento
+        profile={profile}
+        terminalLines={lines}
+        calendar={{
+          total: 59,
+          weeks: [
+            [{ date: "2026-10-04", count: 0, level: 0 }],
+            [
+              { date: "2026-10-11", count: 3, level: 3 },
+              { date: "2026-10-12", count: null, level: 1 },
+            ],
+          ],
+        }}
+      />
+    </NextIntlClientProvider>,
+  );
+  const grid = screen.getByRole("img", { name: "Son 12 ayda 59 katkı" });
+  expect(grid.querySelectorAll(".contrib-cell")).toHaveLength(3);
+  expect(grid.querySelector('[title="11 Ekim 2026: 3 katkı"]')).not.toBeNull();
+});

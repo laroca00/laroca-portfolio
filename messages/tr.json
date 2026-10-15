@@ -66,7 +66,10 @@
   },
   "Terminal": {
     "title": "son çalışmalar",
-    "command": "git log --oneline"
+    "command": "git log --oneline",
+    "calendarCommand": "gh contributions --son-12-ay",
+    "calendarTotal": "Son 12 ayda {total} katkı",
+    "calendarDay": "{date}: {count} katkı"
   },
   "Services": {
     "title": "Birlikte neler yapabiliriz?",

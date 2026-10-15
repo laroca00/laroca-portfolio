@@ -96,6 +96,7 @@ Kapalı bir dilin tüm adresleri 404 döner ve dil seçici, sitemap ve hreflang'
 | `CONTACT_TO_EMAIL` | Mesajların gideceği adres (`tugberkakkrt@gmail.com`). |
 | `CONTACT_FROM_EMAIL` | Gönderen. Alan adı doğrulanana kadar `LaRoca <onboarding@resend.dev>`. |
 | `NEXT_PUBLIC_SITE_URL` | Canonical, sitemap ve paylaşım görselleri için tam adres (ör. `https://laroca.studio`). |
+| `GITHUB_TOKEN` | İsteğe bağlı. "Son çalışmalar" terminali ve katkı ızgarası için. Varsa özel repoların commit mesajları ve özel katkı sayıları da gösterilir; yoksa yalnızca herkese açık veriler. Classic token için `repo` ve `read:user` izinleri yeterli. |
 
 ## Yayına alma (Vercel Hobby)
 
